@@ -1,0 +1,11 @@
+#Dependencies
+node_modules
+
+#dist
+dist
+
+#But do not ignore package.json
+!package.json 
+
+#log files
+.log
