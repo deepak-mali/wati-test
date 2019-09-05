@@ -1,9 +1,24 @@
 {
 	"defaultSeverity": "error",
 	"extends": ["tslint:recommended"],
-	"jsRules": {},
 	"rules": {
-		"no-console": false
+		"max-line-length": {
+				"options": [120]
+		},
+		"new-parens": true,
+		"no-debugger": true,
+		"quotemark": [true, "single", "avoid-escape"],
+		"indent": [true, "tabs", 2],
+		"semicolon": [true, "always"],
+		"no-console": {
+				"severity": "warning",
+				"options": ["debug", "info", "time", "timeEnd", "trace"]
+		}
+	},
+	"jsRules": {
+			"max-line-length": {
+					"options": [120]
+			}
 	},
 	"rulesDirectory": []
 }

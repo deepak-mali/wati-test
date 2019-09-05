@@ -2,9 +2,9 @@
   "name": "node-ts-boilerplate",
   "version": "1.0.0",
   "description": "This project is aimed to give a base ground for people to get started with Node project using typescript.",
-  "main": "dist/app.js",
+  "main": "dist/app/app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "tsc && node dist/app/index.js",
     "start:dev": "nodemon -e ts -w ./src -x npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
