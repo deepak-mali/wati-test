@@ -26,6 +26,7 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
+    "@hapi/joi": "^15.1.1",
     "config": "^3.2.2",
     "express": "^4.16.4"
   }
