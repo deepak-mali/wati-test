@@ -7,7 +7,6 @@ app.use(express.json());
 
 routes(app);
 
-
 app.listen(port, (err) => {
 	if (err) {
 		throw err;

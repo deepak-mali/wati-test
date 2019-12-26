@@ -1,13 +1,8 @@
-
-export const add  = (request, response) => {
+export const add  = (numbers: Array<number>) => {
 	let sum = 0;
-	request.body.numbers.map((num) => {
+	numbers.map((num) => {
 		num = Number(num);
-		if (isNaN(NaN)) {
-			sum += num;
-		}
+		sum += num;
 	});
-	return response.status(200).json({
-		sum,
-	});
+	return sum;
 };
