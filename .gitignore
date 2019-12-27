@@ -9,3 +9,7 @@ dist
 
 #log files
 .log
+
+#Testing stuff
+coverage
+.nyc_outputed
