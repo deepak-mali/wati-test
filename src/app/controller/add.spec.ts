@@ -1,9 +1,13 @@
 import { describe, it } from 'mocha';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { add } from '../controller';
 
 describe('Testing Add functionality...', () => {
-  it('Test add function', () => {
-    assert(add([2, 2]), 4);
-  }) 
+  it('Testing with number array', () => {
+    expect(add([2, 2])).to.equal(4);
+  });
+
+  it('Testing with floating and integer number array...', () => {
+    expect(add([0.2, 2])).to.equal(2.2);
+  });
 })

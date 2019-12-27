@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/app/index.js",
     "start:dev": "nodemon -e ts -w ./src -x npm start",
-    "test": "mocha './dist/**/*.spec.js'"
+    "test": "tsc && nyc --reporter=html mocha './dist/**/*.spec.js'"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
   "dependencies": {
     "@hapi/joi": "^15.1.1",
     "config": "^3.2.2",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "nyc": "^15.0.0"
   }
 }
