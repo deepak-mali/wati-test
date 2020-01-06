@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { add } from '../controller';
+import { add } from '../app';
 
 // Test cases for addition logic.
 describe('Testing Add functionality...', () => {
