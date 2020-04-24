@@ -21,20 +21,20 @@
   "author": "Deepak Mali",
   "license": "ISC",
   "devDependencies": {
-    "@types/express": "^4.16.1",
+    "@types/express": "^4.17.6",
     "chai": "^4.2.0",
-    "mocha": "^6.2.2",
-    "nodemon": "^1.19.4",
-    "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "mocha": "^6.2.3",
+    "nodemon": "^2.0.3",
+    "tslint": "^5.20.1",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "@hapi/joi": "^15.1.1",
     "chalk": "^3.0.0",
-    "config": "^3.2.2",
-    "express": "^4.16.4",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
     "moment": "^2.24.0",
-    "nyc": "^15.0.0",
+    "nyc": "^15.0.1",
     "winston": "^3.2.1"
   }
 }
