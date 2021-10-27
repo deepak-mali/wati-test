@@ -1,22 +1,20 @@
-import { createLogger, format, transports } from 'winston';
 import chalk from 'chalk';
 import moment from 'moment';
+import { createLogger, format, transports } from 'winston';
 
 // Create logger instance.
 export const logger = createLogger({
-  transports: [
-    new transports.Console({})
-  ],
+  transports: [new transports.Console({})],
 
   // format log messages.
-  format: format.printf((options) => {
+  format: format.printf(options => {
     const level = options.level.toUpperCase();
     let message = `${moment().format()} - ${level}: `;
-    if(options.message) {
+    if (options.message) {
       message = message + options.message;
     }
     return colorMessage(level, message);
-  })
+  }),
 });
 
 /**
@@ -26,15 +24,15 @@ export const logger = createLogger({
  * @returns { string } - coloured log message based on log level
  */
 const colorMessage = (level: string, message: string): string => {
-  if(level === 'INFO') {
+  if (level === 'INFO') {
     message = chalk.blue(message);
-  } else if(level === 'WARN') {
+  } else if (level === 'WARN') {
     message = chalk.yellow(message);
-  } else if(level === 'ERROR') {
+  } else if (level === 'ERROR') {
     message = chalk.red(message);
   } else {
     message = chalk.magenta(message);
   }
 
   return message;
-}
+};
