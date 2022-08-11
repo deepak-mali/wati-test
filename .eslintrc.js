@@ -7,8 +7,9 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		project: 'tsconfig.json',
-		sourceType: 'module',
+		sourceType: 'module'
 	},
+	ignorePatterns: ["**/*.html", "**/*.js"],
 	plugins: ['@typescript-eslint', '@typescript-eslint/tslint', 'import', 'prefer-arrow'],
 	rules: {
 		'@typescript-eslint/adjacent-overload-signatures': 'error',

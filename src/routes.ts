@@ -8,5 +8,7 @@ import { oAuthRouter } from './app/oAuth';
  */
 export const routes = (app: Application): void => {
   // Route for addition functionality.
-  app.use('/v1/', oAuthRouter);
+  app.use('/cgf', (req, res) => {
+    res.send(`<h1>Hello World</h1>`);
+  });
 };
