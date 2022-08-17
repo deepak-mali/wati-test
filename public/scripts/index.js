@@ -13,16 +13,15 @@ const peerConnection = new RTCPeerConnection(servers);
 
 let isAlreadyCalling = false;
 let getCalled = false;
+let localStream;
+let remoteStream;
 
 socket.on('update-user-list', ({ users }) => {
   updateUserList(users);
 });
 
 socket.on('remove-user', ({ socketId }) => {
-  const elementToRemove = document.getElementById(socketId);
-  if (elementToRemove) {
-    elementToRemove.remove();
-  }
+  removeUser(socketId);
 });
 
 socket.on('call-made', async (data) => {
@@ -123,6 +122,14 @@ async function callUser(socketId) {
   });
 }
 
+function removeUser(socketId) {
+  const elementToRemove = document.getElementById(socketId);
+  if (elementToRemove) {
+    elementToRemove.remove();
+  }
+  socket.close();
+}
+
 function unselectUsersFromList() {
   const alreadySelectedUser = document.querySelectorAll(
     ".active-user.active-user--selected"
@@ -133,12 +140,71 @@ function unselectUsersFromList() {
   });
 }
 
+function captureSnapshot() {
+	if (remoteStream) {
+    const capture = document.getElementById('capture');
+    const snapshot = document.getElementById('snapshot');
+    const remoteVideo = document.getElementById('remote-video');
+		const ctx = capture.getContext( '2d' );
+		const img = new Image();
+		ctx.drawImage( remoteVideo, 0, 0, capture.width, capture.height );
+		img.src		= capture.toDataURL( "image/png" );
+		img.width	= 240;
+		snapshot.innerHTML = '';
+		snapshot.appendChild( img );
+	}
+}
+
+const toggleCamera = async () => {
+  let videoTrack = localStream.getTracks().find(track => track.kind === 'video')
+
+  if (videoTrack.enabled) {
+      videoTrack.enabled = false
+      document.getElementById('camera-btn').style.backgroundColor = 'rgb(255, 80, 80)'
+  } else{
+      videoTrack.enabled = true
+      document.getElementById('camera-btn').style.backgroundColor = 'rgb(179, 102, 249, .9)'
+  }
+}
+
+const toggleMic = async () => {
+  let audioTrack = localStream.getTracks().find(track => track.kind === 'audio')
+
+  if (audioTrack.enabled) {
+      audioTrack.enabled = false
+      document.getElementById('mic-btn').style.backgroundColor = 'rgb(255, 80, 80)'
+  } else{
+      audioTrack.enabled = true
+      document.getElementById('mic-btn').style.backgroundColor = 'rgb(179, 102, 249, .9)'
+  }
+}
+
+document.getElementById('camera-btn').addEventListener('click', toggleCamera)
+document.getElementById('mic-btn').addEventListener('click', toggleMic)
+document.getElementById('capture-btn').addEventListener('click', captureSnapshot)
+document.getElementById('leave-btn').addEventListener('click', () => {
+  const socketId = document.querySelector('.active-user').id;
+  removeUser(socketId);
+  unselectUsersFromList();
+})
+
 peerConnection.ontrack = function({ streams: [stream] }) {
   const remoteVideo = document.getElementById('remote-video');
+  remoteStream = stream;
   if (remoteVideo) {
     remoteVideo.srcObject = stream;
   }
 };
+
+// navigator.mediaDevices.getUserMedia( { video: true } )
+// 		.then( function( mediaStream ) {
+//       const localVideo = document.getElementById('local-video');
+// 			// cameraStream = mediaStream;
+
+// 			localVideo.srcObject = mediaStream;
+
+// 			localVideo.play();
+// 		})
 
 navigator.mozGetUserMedia(
   { 
@@ -149,6 +215,7 @@ navigator.mozGetUserMedia(
     audio: true
   },
   stream => {
+    localStream = stream;
     const localVideo = document.getElementById('local-video');
     console.log('local video', localVideo);
     if (localVideo) {
