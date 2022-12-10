@@ -44,7 +44,7 @@
   "dependencies": {
     "chalk": "^3.0.0",
     "config": "^3.3.6",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "joi": "^17.4.0",
     "moment": "^2.29.1",
     "nyc": "^15.1.0",
