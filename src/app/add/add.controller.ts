@@ -6,8 +6,6 @@ import { logger } from '../../utils';
  */
 
 export default class AddController {
-  constructor() {}
-
   async add(body: Record<string, number>): Promise<number> {
     // logger.info(body);
     logger.info(`starting addition... num1: ${body.num1}, num2: ${body.num2}`);

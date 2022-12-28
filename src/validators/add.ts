@@ -6,7 +6,7 @@ import { logger } from '../utils';
 const schema = Joi.object({
   body: {
     num1: Joi.number().strict().required(),
-		num2: Joi.number().strict().required(),
+    num2: Joi.number().strict().required(),
   },
 }).unknown(true);
 
