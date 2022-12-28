@@ -12,4 +12,4 @@ dist
 
 #Testing stuff
 coverage
-.nyc_outputed
+.nyc_output

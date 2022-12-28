@@ -1,6 +1,6 @@
 import { Application } from 'express';
 
-import { oAuthRouter } from './app/oAuth';
+import { addRouter } from './app/add';
 
 /**
  * @description - API endpoints declarations.
@@ -8,5 +8,5 @@ import { oAuthRouter } from './app/oAuth';
  */
 export const routes = (app: Application): void => {
   // Route for addition functionality.
-  app.use('/v1/', oAuthRouter);
+  app.use('/', addRouter);
 };
